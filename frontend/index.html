@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exabot — FCEyT UNSE | Sistema de Chatbot v2</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  
+  <div class="app-container">
+    <div class="chat">
+      
+      <div class="hdr">
+        <div class="av">E</div> <div class="hinfo">
+          <div class="hname">Exa<span class="hn-acc">bot</span></div>
+          <div class="hsub">FCEyT-UNSE</div>
+        </div>
+        <div class="hright">
+          <div class="spill"><div class="sdot"></div><span id="stxt">En línea</span></div>
+          <button class="hbtn" onclick="resetChat()" title="Nuevo chat">↺</button>
+        </div>
+      </div>
+
+      <div class="wov" id="wo">
+        <div class="wlogo-w">
+          <div class="wlogo"></div> </div>
+        <div class="wtitle">Exa<span class="wt-acc">bot</span></div>
+        <div class="wfac">Facultad de Ciencias Exactas y Tecnologías · UNSE</div>
+       <div class="welcome-bubble">
+    ¡Hola! Soy Exabot, el asistente virtual de la FCEyT. Estas son mis funciones principales:
+</div>
+
+       
+       <div class="wopts">
+  <button class="wopt" onclick="startWithTopic('carreras')">
+    <div class="wopt-ic">🎓</div>
+    <div>Carreras y oferta académica</div>
+  </button>
+
+  <button class="wopt" onclick="startWithTopic('horarios')">
+    <div class="wopt-ic">📅</div>
+    <div>Horarios y calendario académico</div>
+  </button>
+
+  <button class="wopt" onclick="startWithTopic('vida')">
+    <div class="wopt-ic">🏛️</div>
+    <div>Vida estudiantil y servicios</div>
+  </button>
+
+  <button class="wopt" onclick="startWithTopic('tramites')">
+    <div class="wopt-ic">📋</div>
+    <div>Trámites y consultas</div>
+  </button>
+</div>
+        
+        <div class="wnote">🤖 Soy un asistente virtual, no una persona</div>
+        <button class="wbtn" onclick="startChat()">Empezar →</button>
+      </div>
+
+      <div class="msgs" id="msgs"></div>
+
+      <div class="qrs" id="qrs"></div>
+
+      <div class="inp-area">
+        <div class="err" id="err"></div>
+        <div class="irow">
+          <textarea id="ui" placeholder="Escribí tu pregunta..." rows="1"
+            onkeydown="window.hk(event)" oninput="window.ar(this)"></textarea>
+          <button class="sbtn" id="sb" onclick="window.send()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"
+                 stroke-linecap="round" stroke-linejoin="round">
+              <line x1="22" y1="2" x2="11" y2="13"/>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+            </svg>
+          </button>
+        </div>
+        <div class="hint">Enter para enviar · "menú" para volver al inicio</div>
+      </div>
+    </div>
+  </div>
+
+  <script src="ui.js?v=20260325-2"></script> 
+  <script src="app.js?v=20260325-2"></script>
+</body>
+</html>

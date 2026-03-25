@@ -1,0 +1,281 @@
+carrera,materia,comision,dia,hora_inicio,hora_fin,tipo,aula,docente
+LSI,Fundamentos de la Programación,Com 1,Miércoles,10:00,12:00,Teoría,Aula 30 - Pab. Reforma del 18,Prof. Carmen Silva
+LSI,Fundamentos de la Programación,Com 1,Miércoles,8:00,10:00,Práctica,Aula 23 - Pab. Reforma del 18,Prof. Dahia Cejas
+LSI,Fundamentos de la Programación,Com 1,Jueves,8:00,10:00,Taller,Lab. Alfa - Pab. Laboratorios N°2,Prof. Dahia Cejas
+LSI,Fundamentos de la Programación,Com 1.2,Lunes,10:30,12:30,Taller,Lab. Gama - Pab. Laboratorios N°2,Prof. Martín Palavecino
+LSI,Fundamentos de la Programación,Com 2,Lunes,15:30,17:30,Teoría,Aula 22 - Pab. Reforma del 18,Prof. Carmen Silva
+LSI,Fundamentos de la Programación,Com 2,Lunes,18:00,20:00,Práctica,Aula 27 - Pab. Reforma del 18,Prof. Walter Toledo
+LSI,Fundamentos de la Programación,Com 2.1,Viernes,16:00,18:00,Taller,Lab. Alfa - Pab. Laboratorios N°2,Prof. Walter Toledo
+LSI,Fundamentos de la Programación,Com 2.2,Viernes,16:00,18:00,Taller,Lab. Gama - Pab. Laboratorios N°2,Prof. Martín Palavecino
+LSI,Fundamentos de la Programación,Com 3,Miércoles,19:00,21:00,Teoría,Aula 23 - Pab. Reforma del 18,Prof. Irene Salazar
+LSI,Fundamentos de la Programación,Com 3,Miércoles,17:00,19:00,Práctica,Aula 30 - Pab. Reforma del 18,Ing. Aldo Roldán
+LSI,Fundamentos de la Programación,Com 3,Jueves,19:00,21:00,Taller,Lab. Alfa - Pab. Laboratorios N°2,Ing. Aldo Roldán
+LSI,Álgebra I (Anual),Com Mañana,Martes,8:00,10:00,Práctica,Aula 23 - Pab. Reforma del 18,Prof. M.Espindola
+LSI,Álgebra I (Anual),Com Mañana,Viernes,8:00,10:00,Teórica,Aula 23 - Pab. Reforma del 18,Prof. Grabiela Robles
+LSI,Álgebra I (Anual),Com Tarde,Martes,17:00,19:00,Teórica,Aula 16 - Pab. Reforma del 18,Lic. Pablo Zurita
+LSI,Álgebra I (Anual),Com Tarde,Jueves,17:00,19:00,Práctica,Aula 23 - Pab. Reforma del 18,Prof. M.Espindola
+LSI,Análisis I (Anual),Com 1,Martes,10:00,12:00,Teórica,Aula 23 - Pab. Reforma del 18,Ing. Pablo Saracho / Lic. Lidia de Pablo
+LSI,Análisis I (Anual),Com 1,Viernes,10:00,12:00,Práctica,Aula 23 - Pab. Reforma del 18,Prof. Viviana Yanuci
+LSI,Análisis I (Anual),Com 2,Viernes,14:00,16:00,Teórica,Aula 16 - Pab. Reforma del 18,Prof. Viviana Yanuci
+LSI,Análisis I (Anual),Com 2,Martes,19:00,21:00,Práctica,Aula 16 - Pab. Reforma del 18,Lic. Lidia de Pablo / Prof. Diego Coria
+LSI,Inglés I,Com 1,Lunes,10:00,12:00,Teórico-Práctica,Aula 28 - Pab. Reforma del 18,Prof. Adriana Macedo
+LSI,Inglés I,Com 1,Miércoles,8:00,10:00,Teórico-Práctica,Aula 29 - Pab. Reforma del 18,Prof. Adriana Macedo
+LSI,Inglés I,Com 2,Lunes,16:30,18:00,Teórico-Práctica,Aula 26 - Pab. Reforma del 18,Prof. Verónica Billordo
+LSI,Inglés I,Com 2,Martes,12:00,14:00,Teórico-Práctica,Aula 24 - Pab. Reforma del 18,Prof. Adriana Macedo
+LSI,Lógica I,Com 1,Lunes,8:00,10:00,Teórico-Práctica,Aula 23 - Pab. Reforma del 18,Dr. Budán / Prof. Villarreal / Prof. Valdez
+LSI,Lógica I,Com 1,Jueves,10:00,12:00,Teórico-Práctica,Aula 23 - Pab. Reforma del 18,Dr. Budán / Prof. Villarreal / Prof. Valdez
+LSI,Lógica I,Com 2,Martes,15:00,17:00,Teórico-Práctica,Aula 28 - Pab. Reforma del 18,Dr. Budán / Prof. Villarreal / Prof. Valdez
+LSI,Lógica I,Com 2,Jueves,15:00,17:00,Teórico-Práctica,Aula 28 - Pab. Reforma del 18,Dr. Budán / Prof. Villarreal / Prof. Valdez
+PUI,Fundamentos de la Programación,Com 1,Lunes,14:00,16:00,Teórica,Aula 23 - Pab. Reforma del 18,Prof. Silvina Unzaga
+PUI,Fundamentos de la Programación,Com 1,Martes,17:00,20:00,Práctica,Aula 22 - Pab. Reforma del 18,Prof. Claudia Ávila
+PUI,Fundamentos de la Programación,Com 2,Miércoles,13:00,16:00,Práctica,Aula 23 - Pab. Reforma del 18,Prof. Carlos Vega
+PUI,Fundamentos de la Programación,Com 3,Viernes,13:00,15:00,Teórica,Aula 23 - Pab. Reforma del 18,Prof. Carmen Silva
+PUI,Fundamentos de la Programación,Com 3,Viernes,15:00,18:00,Práctica,Aula 23 - Pab. Reforma del 18,Prof. Carlos Galván
+PUI,Elementos de Álgebra (Anual),Com 1,Jueves,19:00,21:00,Teórica,Aula 16 - Pab. Reforma del 18,Ing. Cordero Ricardo
+PUI,Elementos de Álgebra (Anual),Com 1,Viernes,19:00,21:00,Práctica,Aula 16 - Pab. Reforma del 18,Prof. Torres Walter
+PUI,Elementos de Álgebra (Anual),Com 2,Lunes,8:00,10:00,Teórica,Aula 28 - Pab. Reforma del 18,Ing. Cordero Ricardo
+PUI,Elementos de Álgebra (Anual),Com 2,Jueves,8:00,10:00,Práctica,Aula 28 - Pab. Reforma del 18,Prof. Valeria Elías
+PUI,Lógica,Com 1,Lunes,16:00,18:00,Teórico,Aula 23 - Pab. Reforma del 18,Prof. Villarreal / Prof. Chávez
+PUI,Lógica,Com 1,Miércoles,16:00,18:00,Práctica,Aula 23 - Pab. Reforma del 18,Prof. Villarreal / Prof. Chávez
+PUI,Lógica,Com 2,Miércoles,8:00,10:00,Teórico,Aula 24 - Pab. Reforma del 18,Prof. Villarreal / Prof. Chávez
+PUI,Lógica,Com 2,Viernes,8:00,10:00,Práctica,Aula 28 - Pab. Reforma del 18,Prof. Villarreal / Prof. Chávez
+PUI,Inglés I (PUI),Com Mañana,Lunes,10:00,12:30,Teórico-Práctica,Aula 22 - Pab. Reforma del 18,
+PUI,Inglés I (PUI),Com Mañana,Miércoles,10:00,12:30,Teórico-Práctica,Aula 23 - Pab. Reforma del 18,
+PUI,Inglés I (PUI),Com Tarde,Martes,14:30,17:00,Teórico-Práctica,Aula 16 - Pab. Reforma del 18,
+PUI,Inglés I (PUI),Com Tarde,Jueves,14:30,17:00,Teórico-Práctica,Aula 23 - Pab. Reforma del 18,
+PUI,Laboratorio I,Com 1,Miércoles,18:00,20:00,Teórica,Lab. Alfa - Pab. Laboratorios N°2,Prof. Carmen Silva
+PUI,Laboratorio I,Com 1,Lunes,18:00,20:00,Práctica,Lab. Alfa - Pab. Laboratorios N°2,Ing. Aldo Roldán
+PUI,Laboratorio I,Com 2,Jueves,10:00,12:00,Teórica,Lab. Alfa - Pab. Laboratorios N°2,Prof. Gregorio Tkachuk
+PUI,Laboratorio I,Com 2,Jueves,12:00,14:00,Práctica,Lab. Alfa - Pab. Laboratorios N°2,Prof. Claudia Ávila
+PUI,Laboratorio I,Com 3,Viernes,10:00,12:00,Teórica,Lab. Alfa - Pab. Laboratorios N°2,Prof. Carmen Silva
+PUI,Laboratorio I,Com 3,Martes,20:00,22:00,Práctica,Lab. Alfa - Pab. Laboratorios N°2,Prof. Adrián Belloumini
+PUI,Organización del Computador,Única,Miércoles,13:00,15:00,Teórica,Aula 26 - Pab. Reforma del 18,Prof. Mabel Sosa
+PUI,Organización del Computador,Única,Jueves,18:00,21:00,Práctica,Aula 25 - Pab. Reforma del 18,Prof. Germán Lescano
+IC,Álgebra y Geometría Analítica,Com 1,Lunes,17:00,19:00,Teórico/Práctica,Aula 16 - Pab. Reforma del 18,Ing. Ariel Gerez
+IC,Álgebra y Geometría Analítica,Com 1,Miércoles,17:00,19:00,Teórico/Práctica,Aula 16 - Pab. Reforma del 18,Ing. Cristian Romano
+IC,Álgebra y Geometría Analítica,Com 2,Lunes,8:00,10:00,Teórico/Práctica,Aula 16 - Pab. Reforma del 18,Lic. Viviana Ledda
+IC,Álgebra y Geometría Analítica,Com 2,Viernes,8:00,10:00,Teórico/Práctica,Aula 16 - Pab. Reforma del 18,Lic. Cristian Benites
+IC,Álgebra y Geometría Analítica,Com 3,Miércoles,19:00,21:00,Teórico/Práctica,Aula 16 - Pab. Reforma del 18,Lic. Bettiana Rafael
+IC,Álgebra y Geometría Analítica,Com 3,Viernes,16:00,18:00,Teórico/Práctica,Aula 16 - Pab. Reforma del 18,Lic. Bettiana Rafael
+IC,Álgebra y Geometría Analítica,Com 4,Lunes,10:00,12:00,Teórico/Práctica,Aula 26 - Pab. Reforma del 18,Prof. Cristina Basualdo
+IC,Álgebra y Geometría Analítica,Com 4,Jueves,8:00,10:00,Teórico/Práctica,Aula 26 - Pab. Reforma del 18,Prof. Cristina Basualdo
+IC,Análisis Matemático I,Com 1,Miércoles,8:00,10:00,Teórica,Aula 16 - Pab. Reforma del 18,Prof. Lidia de Pablo
+IC,Análisis Matemático I,Com 1,Martes,8:00,11:00,Práctica,Aula 22 - Pab. Reforma del 18,Prof. D. Coria
+IC,Análisis Matemático I,Com 2,Martes,15:00,17:00,Teórica,Aula 23 - Pab. Reforma del 18,Ing. P. Saracho
+IC,Análisis Matemático I,Com 2,Jueves,15:00,18:00,Práctica,Aula 22 - Pab. Reforma del 18,Prof. Viviana Yanucci
+IC,Análisis Matemático I,Com 3,Lunes,10:00,12:00,Teórica,Aula 16 - Pab. Reforma del 18,Ing. Ariel Gerez
+IC,Análisis Matemático I,Com 3,Miércoles,10:00,13:00,Práctica,Aula 16 - Pab. Reforma del 18,Prof. A. Torres
+IC,Sistemas de Representación I,Com 1,Lunes,10:00,12:00,Teórica,Aula 20 - Dibujo - Pab. Reforma del 18,Ing. Allal Tomas
+IC,Sistemas de Representación I,Com 1,Miércoles,10:00,12:00,Práctica,Aula 20 - Dibujo - Pab. Reforma del 18,Ing. Guzman Jose M.
+IC,Sistemas de Representación I,Com 2,Lunes,19:00,21:00,Teórica,Aula 20 - Dibujo - Pab. Reforma del 18,Ing. Perez Molina Raul
+IC,Sistemas de Representación I,Com 2,Miércoles,19:00,21:00,Práctica,Aula 20 - Dibujo - Pab. Reforma del 18,Ing. Reynoso Ariel
+IC,Sistemas de Representación I,Com 3,Martes,19:00,21:00,Teórica,Aula 20 - Dibujo - Pab. Reforma del 18,
+IC,Sistemas de Representación I,Com 3,Jueves,19:00,21:00,Práctica,Aula 20 - Dibujo - Pab. Reforma del 18,
+IC,Sistemas de Representación I,Com 4,Lunes,15:00,17:00,Teórica,Aula 20 - Dibujo - Pab. Reforma del 18,Ing. Zerda Martha
+IC,Sistemas de Representación I,Com 4,Miércoles,15:00,17:00,Práctica,Aula 20 - Dibujo - Pab. Reforma del 18,
+IC,Informática General,Com 1,Jueves,10:00,12:00,Teórica,Aula 16 - Pab. Reforma del 18,Prof. Unzaga
+IC,Informática General,Com 1,Viernes,10:00,13:00,Práctica,Aula 22 - Pab. Reforma del 18,Prof. Carlos Galván
+IC,Informática General,Com 2,Jueves,13:00,15:00,Teórica,Aula 22 - Pab. Reforma del 18,Prof. Carmen Silva
+IC,Informática General,Com 2,Lunes,14:00,17:00,Práctica,Aula 16 - Pab. Reforma del 18,Ing. Montalvetti Mario
+IC,Informática General,Com 3,Martes,12:00,14:00,Teórica,Aula 16 - Pab. Reforma del 18,Prof. Mabel Sosa
+IC,Informática General,Com 3,Miércoles,14:00,17:00,Práctica,Aula 16 - Pab. Reforma del 18,Ing. Montalvetti Mario
+IC,Ingeniería y Sociedad,Única,Lunes,12:00,14:00,Teórico-Práctica,Aula 16 - Pab. Reforma del 18,Ing. Héctor Paz / Ing. Teresita Pilán / Ing. Marcia Rizo Patrón / Ing. Jimena Trejo
+II,Álgebra y Geometría Analítica,Com 1,Lunes,17:00,19:00,Teórico/Práctica,Aula 16 - Pab. Reforma del 18,Ing. Ariel Gerez
+II,Álgebra y Geometría Analítica,Com 1,Miércoles,17:00,19:00,Teórico/Práctica,Aula 16 - Pab. Reforma del 18,Ing. Cristian Romano
+II,Álgebra y Geometría Analítica,Com 2,Lunes,8:00,10:00,Teórico/Práctica,Aula 16 - Pab. Reforma del 18,Lic. Viviana Ledda
+II,Álgebra y Geometría Analítica,Com 2,Viernes,8:00,10:00,Teórico/Práctica,Aula 16 - Pab. Reforma del 18,Lic. Cristian Benites
+II,Álgebra y Geometría Analítica,Com 3,Miércoles,19:00,21:00,Teórico/Práctica,Aula 16 - Pab. Reforma del 18,Lic. Bettiana Rafael
+II,Álgebra y Geometría Analítica,Com 3,Viernes,16:00,18:00,Teórico/Práctica,Aula 16 - Pab. Reforma del 18,Lic. Bettiana Rafael
+II,Álgebra y Geometría Analítica,Com 4,Lunes,10:00,12:00,Teórico/Práctica,Aula 26 - Pab. Reforma del 18,Prof. Cristina Basualdo
+II,Álgebra y Geometría Analítica,Com 4,Jueves,8:00,10:00,Teórico/Práctica,Aula 26 - Pab. Reforma del 18,Prof. Cristina Basualdo
+II,Análisis Matemático I,Com 1,Miércoles,8:00,10:00,Teórica,Aula 16 - Pab. Reforma del 18,Prof. Lidia de Pablo
+II,Análisis Matemático I,Com 1,Martes,8:00,11:00,Práctica,Aula 22 - Pab. Reforma del 18,Prof. D. Coria
+II,Análisis Matemático I,Com 2,Martes,15:00,17:00,Teórica,Aula 23 - Pab. Reforma del 18,Ing. P. Saracho
+II,Análisis Matemático I,Com 2,Jueves,15:00,18:00,Práctica,Aula 22 - Pab. Reforma del 18,Prof. Viviana Yanucci
+II,Análisis Matemático I,Com 3,Lunes,10:00,12:00,Teórica,Aula 16 - Pab. Reforma del 18,Ing. Ariel Gerez
+II,Análisis Matemático I,Com 3,Miércoles,10:00,13:00,Práctica,Aula 16 - Pab. Reforma del 18,Prof. A. Torres
+II,Sistemas de Representación I,Com 1,Lunes,10:00,12:00,Teórica,Aula 20 - Dibujo - Pab. Reforma del 18,Ing. Allal Tomas
+II,Sistemas de Representación I,Com 1,Miércoles,10:00,12:00,Práctica,Aula 20 - Dibujo - Pab. Reforma del 18,Ing. Guzman Jose M.
+II,Sistemas de Representación I,Com 2,Lunes,19:00,21:00,Teórica,Aula 20 - Dibujo - Pab. Reforma del 18,Ing. Perez Molina Raul
+II,Sistemas de Representación I,Com 2,Miércoles,19:00,21:00,Práctica,Aula 20 - Dibujo - Pab. Reforma del 18,Ing. Reynoso Ariel
+II,Informática General,Com 1,Jueves,10:00,12:00,Teórica,Aula 16 - Pab. Reforma del 18,Prof. Unzaga
+II,Informática General,Com 1,Viernes,10:00,13:00,Práctica,Aula 22 - Pab. Reforma del 18,Prof. Carlos Galván
+II,Informática General,Com 2,Jueves,13:00,15:00,Teórica,Aula 22 - Pab. Reforma del 18,Prof. Carmen Silva
+II,Informática General,Com 2,Lunes,14:00,17:00,Práctica,Aula 16 - Pab. Reforma del 18,Ing. Montalvetti Mario
+II,Informática General,Com 3,Martes,12:00,14:00,Teórica,Aula 16 - Pab. Reforma del 18,Prof. Mabel Sosa
+II,Informática General,Com 3,Miércoles,14:00,17:00,Práctica,Aula 16 - Pab. Reforma del 18,Ing. Montalvetti Mario
+IV,Álgebra y Geometría Analítica,Com 1,Lunes,17:00,19:00,Teórico/Práctica,Aula 16 - Pab. Reforma del 18,Ing. Ariel Gerez
+IV,Álgebra y Geometría Analítica,Com 1,Miércoles,17:00,19:00,Teórico/Práctica,Aula 16 - Pab. Reforma del 18,Ing. Cristian Romano
+IV,Álgebra y Geometría Analítica,Com 2,Lunes,8:00,10:00,Teórico/Práctica,Aula 16 - Pab. Reforma del 18,Lic. Viviana Ledda
+IV,Álgebra y Geometría Analítica,Com 2,Viernes,8:00,10:00,Teórico/Práctica,Aula 16 - Pab. Reforma del 18,Lic. Cristian Benites
+IV,Álgebra y Geometría Analítica,Com 3,Miércoles,19:00,21:00,Teórico/Práctica,Aula 16 - Pab. Reforma del 18,Lic. Bettiana Rafael
+IV,Álgebra y Geometría Analítica,Com 3,Viernes,16:00,18:00,Teórico/Práctica,Aula 16 - Pab. Reforma del 18,Lic. Bettiana Rafael
+IV,Álgebra y Geometría Analítica,Com 4,Lunes,10:00,12:00,Teórico/Práctica,Aula 26 - Pab. Reforma del 18,Prof. Cristina Basualdo
+IV,Álgebra y Geometría Analítica,Com 4,Jueves,8:00,10:00,Teórico/Práctica,Aula 26 - Pab. Reforma del 18,Prof. Cristina Basualdo
+IV,Análisis Matemático I,Com 1,Miércoles,8:00,10:00,Teórica,Aula 16 - Pab. Reforma del 18,Prof. Lidia de Pablo
+IV,Análisis Matemático I,Com 1,Martes,8:00,11:00,Práctica,Aula 22 - Pab. Reforma del 18,Prof. D. Coria
+IV,Análisis Matemático I,Com 2,Martes,15:00,17:00,Teórica,Aula 23 - Pab. Reforma del 18,Ing. P. Saracho
+IV,Análisis Matemático I,Com 2,Jueves,15:00,18:00,Práctica,Aula 22 - Pab. Reforma del 18,Prof. Viviana Yanucci
+IV,Análisis Matemático I,Com 3,Lunes,10:00,12:00,Teórica,Aula 16 - Pab. Reforma del 18,Ing. Ariel Gerez
+IV,Análisis Matemático I,Com 3,Miércoles,10:00,13:00,Práctica,Aula 16 - Pab. Reforma del 18,Prof. A. Torres
+IV,Sistemas de Representación I,Com 1,Lunes,10:00,12:00,Teórica,Aula 20 - Dibujo - Pab. Reforma del 18,Ing. Allal Tomas
+IV,Sistemas de Representación I,Com 1,Miércoles,10:00,12:00,Práctica,Aula 20 - Dibujo - Pab. Reforma del 18,Ing. Guzman Jose M.
+IV,Sistemas de Representación I,Com 2,Lunes,19:00,21:00,Teórica,Aula 20 - Dibujo - Pab. Reforma del 18,Ing. Perez Molina Raul
+IV,Sistemas de Representación I,Com 2,Miércoles,19:00,21:00,Práctica,Aula 20 - Dibujo - Pab. Reforma del 18,Ing. Reynoso Ariel
+IV,Informática General,Com 1,Jueves,10:00,12:00,Teórica,Aula 16 - Pab. Reforma del 18,Prof. Unzaga
+IV,Informática General,Com 1,Viernes,10:00,13:00,Práctica,Aula 22 - Pab. Reforma del 18,Prof. Carlos Galván
+IV,Informática General,Com 2,Jueves,13:00,15:00,Teórica,Aula 22 - Pab. Reforma del 18,Prof. Carmen Silva
+IV,Informática General,Com 2,Lunes,14:00,17:00,Práctica,Aula 16 - Pab. Reforma del 18,Ing. Montalvetti Mario
+IV,Informática General,Com 3,Martes,12:00,14:00,Teórica,Aula 16 - Pab. Reforma del 18,Prof. Mabel Sosa
+IV,Informática General,Com 3,Miércoles,14:00,17:00,Práctica,Aula 16 - Pab. Reforma del 18,Ing. Montalvetti Mario
+IH,Álgebra y Geometría Analítica,Com 1,Lunes,17:00,19:00,Teórico/Práctica,Aula 16 - Pab. Reforma del 18,Ing. Ariel Gerez
+IH,Álgebra y Geometría Analítica,Com 1,Miércoles,17:00,19:00,Teórico/Práctica,Aula 16 - Pab. Reforma del 18,Ing. Cristian Romano
+IH,Álgebra y Geometría Analítica,Com 2,Lunes,8:00,10:00,Teórico/Práctica,Aula 16 - Pab. Reforma del 18,Lic. Viviana Ledda
+IH,Álgebra y Geometría Analítica,Com 2,Viernes,8:00,10:00,Teórico/Práctica,Aula 16 - Pab. Reforma del 18,Lic. Cristian Benites
+IH,Álgebra y Geometría Analítica,Com 3,Miércoles,19:00,21:00,Teórico/Práctica,Aula 16 - Pab. Reforma del 18,Lic. Bettiana Rafael
+IH,Álgebra y Geometría Analítica,Com 3,Viernes,16:00,18:00,Teórico/Práctica,Aula 16 - Pab. Reforma del 18,Lic. Bettiana Rafael
+IH,Álgebra y Geometría Analítica,Com 4,Lunes,10:00,12:00,Teórico/Práctica,Aula 26 - Pab. Reforma del 18,Prof. Cristina Basualdo
+IH,Álgebra y Geometría Analítica,Com 4,Jueves,8:00,10:00,Teórico/Práctica,Aula 26 - Pab. Reforma del 18,Prof. Cristina Basualdo
+IH,Análisis Matemático I,Com 1,Miércoles,8:00,10:00,Teórica,Aula 16 - Pab. Reforma del 18,Prof. Lidia de Pablo
+IH,Análisis Matemático I,Com 1,Martes,8:00,11:00,Práctica,Aula 22 - Pab. Reforma del 18,Prof. D. Coria
+IH,Análisis Matemático I,Com 2,Martes,15:00,17:00,Teórica,Aula 23 - Pab. Reforma del 18,Ing. P. Saracho
+IH,Análisis Matemático I,Com 2,Jueves,15:00,18:00,Práctica,Aula 22 - Pab. Reforma del 18,Prof. Viviana Yanucci
+IH,Análisis Matemático I,Com 3,Lunes,10:00,12:00,Teórica,Aula 16 - Pab. Reforma del 18,Ing. Ariel Gerez
+IH,Análisis Matemático I,Com 3,Miércoles,10:00,13:00,Práctica,Aula 16 - Pab. Reforma del 18,Prof. A. Torres
+IH,Sistemas de Representación I,Com 1,Lunes,10:00,12:00,Teórica,Aula 20 - Dibujo - Pab. Reforma del 18,Ing. Allal Tomas
+IH,Sistemas de Representación I,Com 1,Miércoles,10:00,12:00,Práctica,Aula 20 - Dibujo - Pab. Reforma del 18,Ing. Guzman Jose M.
+IH,Sistemas de Representación I,Com 2,Lunes,19:00,21:00,Teórica,Aula 20 - Dibujo - Pab. Reforma del 18,Ing. Perez Molina Raul
+IH,Sistemas de Representación I,Com 2,Miércoles,19:00,21:00,Práctica,Aula 20 - Dibujo - Pab. Reforma del 18,Ing. Reynoso Ariel
+IH,Informática General,Com 1,Jueves,10:00,12:00,Teórica,Aula 16 - Pab. Reforma del 18,Prof. Unzaga
+IH,Informática General,Com 1,Viernes,10:00,13:00,Práctica,Aula 22 - Pab. Reforma del 18,Prof. Carlos Galván
+IH,Informática General,Com 2,Jueves,13:00,15:00,Teórica,Aula 22 - Pab. Reforma del 18,Prof. Carmen Silva
+IH,Informática General,Com 2,Lunes,14:00,17:00,Práctica,Aula 16 - Pab. Reforma del 18,Ing. Montalvetti Mario
+IH,Informática General,Com 3,Martes,12:00,14:00,Teórica,Aula 16 - Pab. Reforma del 18,Prof. Mabel Sosa
+IH,Informática General,Com 3,Miércoles,14:00,17:00,Práctica,Aula 16 - Pab. Reforma del 18,Ing. Montalvetti Mario
+IE1,Álgebra y Geometría Analítica,Com 1,Lunes,17:00,19:00,Teórico/Práctica,Aula 16 - Pab. Reforma del 18,Ing. Ariel Gerez
+IE1,Álgebra y Geometría Analítica,Com 1,Miércoles,17:00,19:00,Teórico/Práctica,Aula 16 - Pab. Reforma del 18,Ing. Cristian Romano
+IE1,Álgebra y Geometría Analítica,Com 2,Lunes,8:00,10:00,Teórico/Práctica,Aula 16 - Pab. Reforma del 18,Lic. Viviana Ledda
+IE1,Álgebra y Geometría Analítica,Com 2,Viernes,8:00,10:00,Teórico/Práctica,Aula 16 - Pab. Reforma del 18,Lic. Cristian Benites
+IE1,Álgebra y Geometría Analítica,Com 3,Miércoles,19:00,21:00,Teórico/Práctica,Aula 16 - Pab. Reforma del 18,Lic. Bettiana Rafael
+IE1,Álgebra y Geometría Analítica,Com 3,Viernes,16:00,18:00,Teórico/Práctica,Aula 16 - Pab. Reforma del 18,Lic. Bettiana Rafael
+IE1,Álgebra y Geometría Analítica,Com 4,Lunes,10:00,12:00,Teórico/Práctica,Aula 26 - Pab. Reforma del 18,Prof. Cristina Basualdo
+IE1,Álgebra y Geometría Analítica,Com 4,Jueves,8:00,10:00,Teórico/Práctica,Aula 26 - Pab. Reforma del 18,Prof. Cristina Basualdo
+IE1,Análisis Matemático I,Com 1,Miércoles,8:00,10:00,Teórica,Aula 16 - Pab. Reforma del 18,Prof. Lidia de Pablo
+IE1,Análisis Matemático I,Com 1,Martes,8:00,11:00,Práctica,Aula 22 - Pab. Reforma del 18,Prof. D. Coria
+IE1,Análisis Matemático I,Com 2,Martes,15:00,17:00,Teórica,Aula 23 - Pab. Reforma del 18,Ing. P. Saracho
+IE1,Análisis Matemático I,Com 2,Jueves,15:00,18:00,Práctica,Aula 22 - Pab. Reforma del 18,Prof. Viviana Yanucci
+IE1,Análisis Matemático I,Com 3,Lunes,10:00,12:00,Teórica,Aula 16 - Pab. Reforma del 18,Ing. Ariel Gerez
+IE1,Análisis Matemático I,Com 3,Miércoles,10:00,13:00,Práctica,Aula 16 - Pab. Reforma del 18,Prof. A. Torres
+IE1,Sistemas de Representación I,Com 1,Lunes,10:00,12:00,Teórica,Aula 20 - Dibujo - Pab. Reforma del 18,Ing. Allal Tomas
+IE1,Sistemas de Representación I,Com 1,Miércoles,10:00,12:00,Práctica,Aula 20 - Dibujo - Pab. Reforma del 18,Ing. Guzman Jose M.
+IE1,Sistemas de Representación I,Com 2,Lunes,19:00,21:00,Teórica,Aula 20 - Dibujo - Pab. Reforma del 18,Ing. Perez Molina Raul
+IE1,Sistemas de Representación I,Com 2,Miércoles,19:00,21:00,Práctica,Aula 20 - Dibujo - Pab. Reforma del 18,Ing. Reynoso Ariel
+IE1,Informática General,Com 1,Jueves,10:00,12:00,Teórica,Aula 16 - Pab. Reforma del 18,Prof. Unzaga
+IE1,Informática General,Com 1,Viernes,10:00,13:00,Práctica,Aula 22 - Pab. Reforma del 18,Prof. Carlos Galván
+IE1,Informática General,Com 2,Jueves,13:00,15:00,Teórica,Aula 22 - Pab. Reforma del 18,Prof. Carmen Silva
+IE1,Informática General,Com 2,Lunes,14:00,17:00,Práctica,Aula 16 - Pab. Reforma del 18,Ing. Montalvetti Mario
+IE1,Informática General,Com 3,Martes,12:00,14:00,Teórica,Aula 16 - Pab. Reforma del 18,Prof. Mabel Sosa
+IE1,Informática General,Com 3,Miércoles,14:00,17:00,Práctica,Aula 16 - Pab. Reforma del 18,Ing. Montalvetti Mario
+IE2,Álgebra y Geometría Analítica,Com 1,Lunes,17:00,19:00,Teórico/Práctica,Aula 16 - Pab. Reforma del 18,Ing. Ariel Gerez
+IE2,Álgebra y Geometría Analítica,Com 1,Miércoles,17:00,19:00,Teórico/Práctica,Aula 16 - Pab. Reforma del 18,Ing. Cristian Romano
+IE2,Álgebra y Geometría Analítica,Com 2,Lunes,8:00,10:00,Teórico/Práctica,Aula 16 - Pab. Reforma del 18,Lic. Viviana Ledda
+IE2,Álgebra y Geometría Analítica,Com 2,Viernes,8:00,10:00,Teórico/Práctica,Aula 16 - Pab. Reforma del 18,Lic. Cristian Benites
+IE2,Álgebra y Geometría Analítica,Com 3,Miércoles,19:00,21:00,Teórico/Práctica,Aula 16 - Pab. Reforma del 18,Lic. Bettiana Rafael
+IE2,Álgebra y Geometría Analítica,Com 3,Viernes,16:00,18:00,Teórico/Práctica,Aula 16 - Pab. Reforma del 18,Lic. Bettiana Rafael
+IE2,Álgebra y Geometría Analítica,Com 4,Lunes,10:00,12:00,Teórico/Práctica,Aula 26 - Pab. Reforma del 18,Prof. Cristina Basualdo
+IE2,Álgebra y Geometría Analítica,Com 4,Jueves,8:00,10:00,Teórico/Práctica,Aula 26 - Pab. Reforma del 18,Prof. Cristina Basualdo
+IE2,Análisis Matemático I,Com 1,Miércoles,8:00,10:00,Teórica,Aula 16 - Pab. Reforma del 18,Prof. Lidia de Pablo
+IE2,Análisis Matemático I,Com 1,Martes,8:00,11:00,Práctica,Aula 22 - Pab. Reforma del 18,Prof. D. Coria
+IE2,Análisis Matemático I,Com 2,Martes,15:00,17:00,Teórica,Aula 23 - Pab. Reforma del 18,Ing. P. Saracho
+IE2,Análisis Matemático I,Com 2,Jueves,15:00,18:00,Práctica,Aula 22 - Pab. Reforma del 18,Prof. Viviana Yanucci
+IE2,Análisis Matemático I,Com 3,Lunes,10:00,12:00,Teórica,Aula 16 - Pab. Reforma del 18,Ing. Ariel Gerez
+IE2,Análisis Matemático I,Com 3,Miércoles,10:00,13:00,Práctica,Aula 16 - Pab. Reforma del 18,Prof. A. Torres
+IE2,Sistemas de Representación I,Com 1,Lunes,10:00,12:00,Teórica,Aula 20 - Dibujo - Pab. Reforma del 18,Ing. Allal Tomas
+IE2,Sistemas de Representación I,Com 1,Miércoles,10:00,12:00,Práctica,Aula 20 - Dibujo - Pab. Reforma del 18,Ing. Guzman Jose M.
+IE2,Sistemas de Representación I,Com 2,Lunes,19:00,21:00,Teórica,Aula 20 - Dibujo - Pab. Reforma del 18,Ing. Perez Molina Raul
+IE2,Sistemas de Representación I,Com 2,Miércoles,19:00,21:00,Práctica,Aula 20 - Dibujo - Pab. Reforma del 18,Ing. Reynoso Ariel
+IE2,Informática General,Com 1,Jueves,10:00,12:00,Teórica,Aula 16 - Pab. Reforma del 18,Prof. Unzaga
+IE2,Informática General,Com 1,Viernes,10:00,13:00,Práctica,Aula 22 - Pab. Reforma del 18,Prof. Carlos Galván
+IE2,Informática General,Com 2,Jueves,13:00,15:00,Teórica,Aula 22 - Pab. Reforma del 18,Prof. Carmen Silva
+IE2,Informática General,Com 2,Lunes,14:00,17:00,Práctica,Aula 16 - Pab. Reforma del 18,Ing. Montalvetti Mario
+IE2,Informática General,Com 3,Martes,12:00,14:00,Teórica,Aula 16 - Pab. Reforma del 18,Prof. Mabel Sosa
+IE2,Informática General,Com 3,Miércoles,14:00,17:00,Práctica,Aula 16 - Pab. Reforma del 18,Ing. Montalvetti Mario
+IE3,Álgebra y Geometría Analítica,Com 1,Lunes,17:00,19:00,Teórico/Práctica,Aula 16 - Pab. Reforma del 18,Ing. Ariel Gerez
+IE3,Álgebra y Geometría Analítica,Com 1,Miércoles,17:00,19:00,Teórico/Práctica,Aula 16 - Pab. Reforma del 18,Ing. Cristian Romano
+IE3,Álgebra y Geometría Analítica,Com 2,Lunes,8:00,10:00,Teórico/Práctica,Aula 16 - Pab. Reforma del 18,Lic. Viviana Ledda
+IE3,Álgebra y Geometría Analítica,Com 2,Viernes,8:00,10:00,Teórico/Práctica,Aula 16 - Pab. Reforma del 18,Lic. Cristian Benites
+IE3,Álgebra y Geometría Analítica,Com 3,Miércoles,19:00,21:00,Teórico/Práctica,Aula 16 - Pab. Reforma del 18,Lic. Bettiana Rafael
+IE3,Álgebra y Geometría Analítica,Com 3,Viernes,16:00,18:00,Teórico/Práctica,Aula 16 - Pab. Reforma del 18,Lic. Bettiana Rafael
+IE3,Álgebra y Geometría Analítica,Com 4,Lunes,10:00,12:00,Teórico/Práctica,Aula 26 - Pab. Reforma del 18,Prof. Cristina Basualdo
+IE3,Álgebra y Geometría Analítica,Com 4,Jueves,8:00,10:00,Teórico/Práctica,Aula 26 - Pab. Reforma del 18,Prof. Cristina Basualdo
+IE3,Análisis Matemático I,Com 1,Miércoles,8:00,10:00,Teórica,Aula 16 - Pab. Reforma del 18,Prof. Lidia de Pablo
+IE3,Análisis Matemático I,Com 1,Martes,8:00,11:00,Práctica,Aula 22 - Pab. Reforma del 18,Prof. D. Coria
+IE3,Análisis Matemático I,Com 2,Martes,15:00,17:00,Teórica,Aula 23 - Pab. Reforma del 18,Ing. P. Saracho
+IE3,Análisis Matemático I,Com 2,Jueves,15:00,18:00,Práctica,Aula 22 - Pab. Reforma del 18,Prof. Viviana Yanucci
+IE3,Análisis Matemático I,Com 3,Lunes,10:00,12:00,Teórica,Aula 16 - Pab. Reforma del 18,Ing. Ariel Gerez
+IE3,Análisis Matemático I,Com 3,Miércoles,10:00,13:00,Práctica,Aula 16 - Pab. Reforma del 18,Prof. A. Torres
+IE3,Sistemas de Representación I,Com 1,Lunes,10:00,12:00,Teórica,Aula 20 - Dibujo - Pab. Reforma del 18,Ing. Allal Tomas
+IE3,Sistemas de Representación I,Com 1,Miércoles,10:00,12:00,Práctica,Aula 20 - Dibujo - Pab. Reforma del 18,Ing. Guzman Jose M.
+IE3,Sistemas de Representación I,Com 2,Lunes,19:00,21:00,Teórica,Aula 20 - Dibujo - Pab. Reforma del 18,Ing. Perez Molina Raul
+IE3,Sistemas de Representación I,Com 2,Miércoles,19:00,21:00,Práctica,Aula 20 - Dibujo - Pab. Reforma del 18,Ing. Reynoso Ariel
+IE3,Informática General,Com 1,Jueves,10:00,12:00,Teórica,Aula 16 - Pab. Reforma del 18,Prof. Unzaga
+IE3,Informática General,Com 1,Viernes,10:00,13:00,Práctica,Aula 22 - Pab. Reforma del 18,Prof. Carlos Galván
+IE3,Informática General,Com 2,Jueves,13:00,15:00,Teórica,Aula 22 - Pab. Reforma del 18,Prof. Carmen Silva
+IE3,Informática General,Com 2,Lunes,14:00,17:00,Práctica,Aula 16 - Pab. Reforma del 18,Ing. Montalvetti Mario
+IE3,Informática General,Com 3,Martes,12:00,14:00,Teórica,Aula 16 - Pab. Reforma del 18,Prof. Mabel Sosa
+IE3,Informática General,Com 3,Miércoles,14:00,17:00,Práctica,Aula 16 - Pab. Reforma del 18,Ing. Montalvetti Mario
+IC,Ingeniería y Sociedad,Única,Lunes,12:00,14:00,Teórico-Práctica,Aula 16 - Pab. Reforma del 18,Ing. Héctor Paz / Ing. Teresita Pilán / Ing. Marcia Rizo Patrón
+IV,Ingeniería y Sociedad,Única,Lunes,12:00,14:00,Teórico-Práctica,Aula 16 - Pab. Reforma del 18,Ing. Héctor Paz / Ing. Teresita Pilán / Ing. Marcia Rizo Patrón
+IH,Ingeniería y Sociedad,Única,Lunes,12:00,14:00,Teórico-Práctica,Aula 16 - Pab. Reforma del 18,Ing. Héctor Paz / Ing. Teresita Pilán / Ing. Marcia Rizo Patrón
+IA,Álgebra y Geometría Analítica,Com 1,Lunes,17:00,19:00,Teórico/Práctica,Aula 16 - Pab. Reforma del 18,Ing. Ariel Gerez
+IA,Álgebra y Geometría Analítica,Com 1,Miércoles,17:00,19:00,Teórico/Práctica,Aula 16 - Pab. Reforma del 18,Ing. Cristian Romano
+IA,Álgebra y Geometría Analítica,Com 2,Lunes,8:00,10:00,Teórico/Práctica,Aula 16 - Pab. Reforma del 18,Lic. Viviana Ledda
+IA,Álgebra y Geometría Analítica,Com 2,Viernes,8:00,10:00,Teórico/Práctica,Aula 16 - Pab. Reforma del 18,Lic. Cristian Benites
+IA,Análisis Matemático I,Com 1,Miércoles,8:00,10:00,Teórica,Aula 16 - Pab. Reforma del 18,Prof. Lidia de Pablo
+IA,Análisis Matemático I,Com 1,Martes,8:00,11:00,Práctica,Aula 22 - Pab. Reforma del 18,Prof. D. Coria
+IA,Sistemas de Representación,Com Única,Martes,10:00,12:00,Teórico-Práctica,Aula 20 - Dibujo - Pab. Reforma del 18,Ing. Zerda Martha
+IA,Sistemas de Representación,Com Única,Jueves,10:00,12:00,Teórico-Práctica,Aula 20 - Dibujo - Pab. Reforma del 18,Ing. Zerda Martha
+LM,Álgebra I,Única,Miércoles,10:00,12:00,Teórico-Práctica,Aula 27 - Pab. Reforma del 18,Prof. Responsable Lic. Miriam Rios
+LM,Álgebra I,Única,Jueves,10:00,12:00,Teórico-Práctica,Aula 26 - Pab. Reforma del 18,
+LM,Álgebra I,Única,Viernes,10:00,12:00,Teórico-Práctica,Aula 30 - Pab. Reforma del 18,
+LM,Análisis Matemático I,Única,Lunes,14:00,17:00,Práctica,Aula 25 - Pab. Reforma del 18,Prof. D. Coria
+LM,Análisis Matemático I,Única,Miércoles,8:00,10:00,Teórica,Aula 27 - Pab. Reforma del 18,
+LM,Lógica Matemática,Única,Lunes,8:00,10:00,Teórica,Aula 25 - Pab. Reforma del 18,Prof. Adjunta Arias Sonia
+LM,Lógica Matemática,Única,Jueves,8:00,10:00,Práctica,Aula 29 - Pab. Reforma del 18,Prof. Asociado Budán Maximiliano
+TUV,Elementos de Matemática,Única,Jueves,18:00,20:00,Teórico-Práctica,Aula 24 - Pab. Reforma del 18,Ing. Alejandra B. Lima
+TUV,Elementos de Matemática,Única,Martes,18:00,21:00,Teórico-Práctica,Aula 24 - Pab. Reforma del 18,Ing. Alejandra B. Lima
+TUV,Elementos de Química,Única,Viernes,14:00,17:00,Teórica,Aula 25 - Pab. Reforma del 18,Dra. Ana Ledesma
+TUV,Elementos de Química,Única,Lunes,14:00,16:00,Práctica,Aula 26 - Pab. Reforma del 18,Prof. Pérez Hugo
+TUV,Fundamentos de Dibujo,Única,Jueves,15:00,17:30,Teórico-Práctica,Aula 20 - Dibujo - Pab. Reforma del 18,Ing. Tomas Allal / Arq. Martha Zerda / Ing. Mariano Guzmán
+TUV,Fundamentos de Dibujo,Única,Martes,15:00,17:30,Teórico-Práctica,Aula 20 - Dibujo - Pab. Reforma del 18,Ing. Tomas Allal / Arq. Martha Zerda / Ing. Mariano Guzmán
+TUV,Informática I,Com 1,Lunes,14:00,17:00,Teórico-Práctica,Lab. Dibujo TIPI,Prof. Luciano Galeano
+TUV,Informática I,Com 1,Miércoles,16:00,19:00,Teórico-Práctica,Lab. Dibujo TIPI,Prof. Luciano Galeano
+TUC,Elementos de Matemática,Única,Jueves,18:00,20:00,Teórico-Práctica,Aula 24 - Pab. Reforma del 18,Ing. Alejandra B. Lima
+TUC,Elementos de Matemática,Única,Martes,18:00,21:00,Teórico-Práctica,Aula 24 - Pab. Reforma del 18,Ing. Alejandra B. Lima
+TUC,Elementos de Química,Única,Viernes,14:00,17:00,Teórica,Aula 25 - Pab. Reforma del 18,Dra. Ana Ledesma
+TUC,Elementos de Química,Única,Lunes,14:00,16:00,Práctica,Aula 26 - Pab. Reforma del 18,Prof. Pérez Hugo
+TUC,Fundamentos de Dibujo,Única,Jueves,15:00,17:30,Teórico-Práctica,Aula 20 - Dibujo - Pab. Reforma del 18,Ing. Tomas Allal / Arq. Martha Zerda / Ing. Mariano Guzmán
+TUC,Fundamentos de Dibujo,Única,Martes,15:00,17:30,Teórico-Práctica,Aula 20 - Dibujo - Pab. Reforma del 18,Ing. Tomas Allal / Arq. Martha Zerda / Ing. Mariano Guzmán
+TUC,Informática I,Com 1,Lunes,14:00,17:00,Teórico-Práctica,Lab. Dibujo TIPI,Prof. Luciano Galeano
+TUC,Informática I,Com 1,Miércoles,16:00,19:00,Teórico-Práctica,Lab. Dibujo TIPI,Prof. Luciano Galeano
+TUHS,Elementos de Matemática y Estadística,Única,Jueves,18:00,20:00,Teórico-Práctica,Aula 24 - Pab. Reforma del 18,Ing. Alejandra B. Lima
+TUHS,Elementos de Matemática y Estadística,Única,Martes,18:00,21:00,Teórico-Práctica,Aula 24 - Pab. Reforma del 18,Ing. Alejandra B. Lima
+TUHS,Fundamentos de Dibujo,Única,Jueves,15:00,17:30,Teórico-Práctica,Aula 20 - Dibujo - Pab. Reforma del 18,Ing. Tomas Allal / Arq. Martha Zerda / Ing. Mariano Guzmán
+TUHS,Fundamentos de Dibujo,Única,Martes,15:00,17:30,Teórico-Práctica,Aula 20 - Dibujo - Pab. Reforma del 18,Ing. Tomas Allal / Arq. Martha Zerda / Ing. Mariano Guzmán
+TUOyCP,Álgebra y Geometría Analítica,Com 1,Lunes,17:00,19:00,Teórico/Práctica,Aula 16 - Pab. Reforma del 18,Ing. Ariel Gerez
+TUOyCP,Álgebra y Geometría Analítica,Com 1,Miércoles,17:00,19:00,Teórico/Práctica,Aula 16 - Pab. Reforma del 18,Ing. Cristian Romano
+TUOyCP,Análisis Matemático I,Com 1,Miércoles,8:00,10:00,Teórica,Aula 16 - Pab. Reforma del 18,Prof. Lidia de Pablo
+TUOyCP,Análisis Matemático I,Com 1,Martes,8:00,11:00,Práctica,Aula 22 - Pab. Reforma del 18,Prof. D. Coria
+TUOyCP,Informática General,Com 1,Jueves,10:00,12:00,Teórica,Aula 16 - Pab. Reforma del 18,Prof. Unzaga
+TUOyCP,Informática General,Com 1,Viernes,10:00,13:00,Práctica,Aula 22 - Pab. Reforma del 18,Prof. Carlos Galván
+TUOyCP,Fundamentos de Dibujo,Única,Jueves,15:00,17:30,Teórico-Práctica,Aula 20 - Dibujo - Pab. Reforma del 18,Ing. Tomas Allal / Arq. Martha Zerda / Ing. Mariano Guzmán
+TUOyCP,Fundamentos de Dibujo,Única,Martes,15:00,17:30,Teórico-Práctica,Aula 20 - Dibujo - Pab. Reforma del 18,Ing. Tomas Allal / Arq. Martha Zerda / Ing. Mariano Guzmán
+PI,Fundamentos de la Programación (Anual),Com 1,Miércoles,10:00,12:00,Teoría,Aula 30 - Pab. Reforma del 18,Prof. Carmen Silva
+PI,Fundamentos de la Programación (Anual),Com 1,Miércoles,8:00,10:00,Práctica,Aula 23 - Pab. Reforma del 18,Prof. Dahia Cejas
+PI,Fundamentos de la Programación (Anual),Com 1,Jueves,8:00,10:00,Taller,Lab. Alfa - Pab. Laboratorios N°2,Prof. Dahia Cejas
+PI,Lógica,Com 1,Lunes,16:00,18:00,Teórico,Aula 23 - Pab. Reforma del 18,Prof. Villarreal / Prof. Chávez
+PI,Lógica,Com 1,Miércoles,16:00,18:00,Práctica,Aula 23 - Pab. Reforma del 18,Prof. Villarreal / Prof. Chávez
+PI,Inglés I (PI),Com Mañana,Lunes,10:00,12:30,Teórico-Práctica,Aula 22 - Pab. Reforma del 18,
+PI,Inglés I (PI),Com Mañana,Miércoles,10:00,12:30,Teórico-Práctica,Aula 23 - Pab. Reforma del 18,
+PI,Inglés I (PI),Com Tarde,Martes,14:30,17:00,Teórico-Práctica,Aula 16 - Pab. Reforma del 18,
+PI,Inglés I (PI),Com Tarde,Jueves,14:30,17:00,Teórico-Práctica,Aula 23 - Pab. Reforma del 18,
