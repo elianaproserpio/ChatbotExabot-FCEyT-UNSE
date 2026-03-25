@@ -52,11 +52,7 @@ npm install
 ```bash
 npm start
 ```
-> El servidor estará en `http://localhost:5000`
-
-3. **Archivos generados automáticamente:**
-   - `data/exabot.db` - Base de datos SQLite
-   - `uploads/` - PDFs subidos
+> El servidor estará en `http://localhost:8000`
 
 ### **Frontend (HTML5 + CSS + JavaScript)**
 
