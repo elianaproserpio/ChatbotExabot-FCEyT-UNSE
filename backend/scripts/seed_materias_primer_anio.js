@@ -60,7 +60,7 @@ Materias de Primer Año - Programador Universitario en Informática (PUI)
 FCEyT - UNSE | Carrera de Pregrado (2 años)
 
 PRIMER CUATRIMESTRE:
-1. 	ELEMENTOS DE ÁLGEBRA (Anual)
+1. ELEMENTOS DE ÁLGEBRA (Anual)
 2. FUNDAMENTOS DE LA PROGRAMACIÓN
 3. INGLÉS I
 4. LABORATORIO I

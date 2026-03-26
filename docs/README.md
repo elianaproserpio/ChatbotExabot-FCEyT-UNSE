@@ -52,11 +52,7 @@ npm install
 ```bash
 npm start
 ```
-> El servidor estará en `http://localhost:5000`
-
-3. **Archivos generados automáticamente:**
-   - `data/exabot.db` - Base de datos SQLite
-   - `uploads/` - PDFs subidos
+> El servidor estará en `http://localhost:8000`
 
 ### **Frontend (HTML5 + CSS + JavaScript)**
 
@@ -102,7 +98,7 @@ El chatbot ahora **solo responde preguntas sobre UNSE/FCEyT**. Si el usuario pre
 ```
 Usuario: "¿Cuánto es 2 + 2?"
 
-Exabot: "Esa pregunta está fuera de mi alcance 😊. Soy asistente de UNSE/FCEyT. ¿Hay algo sobre la universidad que pueda ayudarte?"
+Exabot: "Esa pregunta está fuera de mi alcance 😊. Soy asistente de UNSE/FCEyT. ¿Hay algo sobre la FCEyT que pueda ayudarte?"
 ```
 
 ### **¿Dónde está implementado?**
@@ -112,9 +108,6 @@ El prompt ahora incluye:
 - Instrucción explícita: "SOLO respondes preguntas sobre UNSE, FCEyT..."
 - Patrón de respuesta para temas ajenos
 - Énfasis en usar solo la BD cargada
-
-### **Si querés cambiar los temas permitidos:**
-Edita el prompt en `app.js` (búsca "RESTRICCIÓN MUY IMPORTANTE") y ajusta la lista de temas.
 
 ---
 
@@ -127,7 +120,7 @@ Ahora: Solo aparecen los botones sugeridos dinámicos después de que el chat in
 ### **Comportamiento actual:**
 
 1. **Welcome screen**: 4 botones del menú (Carreras, Horarios, Vida, Trámites)
-2. **Usuario hace primera pregunta**: Botones del menú desaparecen
+2. **Usuario hace primera pregunta**: 
 3. **Bot sugiere respuestas**: Aparecen solo los botones dinámicos sugeridos
 
 ### **¿Dónde está implementado?**
@@ -166,12 +159,6 @@ POST /api/documentos
   "tipo": "pdf",
   "fuente_url": "https://fce.unse.edu.ar/..."
 }
-```
-
-**Subir PDF:**
-```javascript
-POST /api/pdf/upload
-// Form-Data con archivo
 ```
 
 **Obtener documentos:**
@@ -213,32 +200,6 @@ POST /api/usuario/preferencias
 14. **✓ Interacción intuitiva** - Voseo rioplatense
 15. **✓ Empatía y confianza** - Tono cálido
 16. **✓ Fluidez y rapidez** - Respuestas concisas
-
----
-
-## 📱 Funcionalidades del Panel de Control
-
-### **Sidebar izquierdo con:**
-
-**📚 Base de Conocimiento**
-- Agregar nuevos documentos manualmente
-- Listar documentos existentes
-- Eliminar documentos
-
-**📄 Subir PDF**
-- Drag & drop de archivos
-- Procesamiento automático
-- Integración con IA
-
-**👤 Perfil del Usuario**
-- Guardar nombre y carrera
-- Modo oscuro
-- Preferencias de idioma
-
-**📊 Estadísticas**
-- Cantidad de documentos
-- Últimas actualizaciones
-- Uso de almacenamiento
 
 ---
 
@@ -323,29 +284,18 @@ El chatbot busca en TODAS las fuentes antes de responder → respuestas más pre
 - [x] Sistema RAG implementado ✅
 - [ ] Google Drive full integration
 - [ ] PDF text extraction automático
-- [ ] Análisis de sentimientos
 - [ ] Multiidioma completo
-- [ ] Integración con SIU Guaraní
-- [ ] Analytics y reportes
 
----
-
-## 📞 Soporte
-
-Para dudas o reportar problemas:
-- Contactar a secretaría técnica FCEyT
-- Mail: secretaria@fce.unse.edu.ar
-- Teléfono: +54 3856 ##-####
 
 ---
 
 ## 📄 Licencia
 
-Proyecto académico - Tesis de Eliana - 2026  
+Proyecto académico - Trabajo Final de Coria Luz Antonella y Eliana Naily Proserpio - 2026  
 Facultad de Ciencias Exactas y Tecnologías - UNSE
 
 ---
 
-**Versión:** 2.0.0  
+**Versión:** 1.0.0  
 **Última actualización:** Marzo 2026  
-**Autor:** Exabot Team
+**Autor:**  Coria Luz Antonella y Eliana Naily Proserpio
