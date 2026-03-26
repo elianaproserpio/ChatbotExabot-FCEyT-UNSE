@@ -16,6 +16,7 @@ let mid = 0;
 let conversacionId = null;
 let usuarioId = 'user_' + Date.now();
 let baseConocimiento = '';
+let followUpTimer = null;
 
 // Contexto del usuario - Criterio 7: Conservación del contexto
 let ctx = {
@@ -26,7 +27,8 @@ let ctx = {
   turnos: 0,
   modoOscuro: false,
   idioma: 'es',
-  tema: 'general'
+  tema: 'general',
+  ultimoFoco: null
 };
 
 // Elementos del menú
@@ -357,7 +359,13 @@ function resumirDocumentoParaChat(doc, maxLineas = 12) {
 
 async function resolverMateriasDesdeSemilla(query) {
   const resultados = await buscarResultadosRAG(query, 'carreras');
-  const docPlan = resultados.find(doc => doc.tipo === 'plan_estudios');
+  const qNorm = normalizar(query || '');
+  const planes = resultados.filter(doc => doc.tipo === 'plan_estudios');
+  const docPlan = planes.find(doc => {
+    const nombre = normalizar(doc.nombre || '');
+    const contenido = normalizar(doc.contenido_preview || doc.contenido_completo || '');
+    return qNorm && (qNorm.includes(nombre) || nombre.includes(qNorm) || contenido.includes(qNorm));
+  }) || planes[0];
   if (!docPlan) return null;
 
   return {
@@ -479,6 +487,63 @@ function detectarTema(texto) {
   return 'general';
 }
 
+function esContinuacionBreve(texto) {
+  const n = normalizar(texto || '');
+  const opciones = [
+    'si', 'sí', 'si quiero', 'sí quiero', 'claro', 'dale', 'ok', 'bueno',
+    'quiero saber mas', 'quiero saber más', 'contame mas', 'contame más',
+    'decime mas', 'decime más', 'mostrame mas', 'mostrame más'
+  ];
+  if (opciones.includes(n)) return true;
+  const palabras = n.split(' ').filter(Boolean);
+  return palabras.length <= 3 && ['si', 'sí', 'claro', 'dale', 'ok'].includes(n);
+}
+
+function ultimaRespuestaAsistente() {
+  for (let i = hist.length - 1; i >= 0; i--) {
+    if (hist[i].role === 'assistant') return hist[i].content || '';
+  }
+  return '';
+}
+
+function obtenerFocoSeguimiento() {
+  if (ctx.ultimoFoco) return ctx.ultimoFoco;
+  const ultima = ultimaRespuestaAsistente().toLowerCase();
+  if (!ultima) return '';
+  if (ultima.includes('plan de estudios')) return 'plan de estudios';
+  if (ultima.includes('primer año') || ultima.includes('materias')) return 'materias';
+  if (ultima.includes('ingreso')) return 'ingreso';
+  if (ultima.includes('horario')) return 'horarios';
+  if (ultima.includes('trámite') || ultima.includes('tramite')) return 'trámites';
+  if (ultima.includes('duración') || ultima.includes('dura')) return 'duración';
+  return 'más información';
+}
+
+function esContinuacionContextual(texto) {
+  return esContinuacionBreve(texto) && (!!ctx.carrera || !!ctx.tema || !!ultimaRespuestaAsistente());
+}
+
+function esConsultaContextualAmbigua(texto) {
+  const n = normalizar(texto || '');
+  if (!ctx.carrera) return false;
+
+  const patrones = [
+    'cuanto dura', 'cuanto dura la carrera', 'quisiera saber cuanto dura',
+    'que materias tiene', 'plan de estudios', 'primer ano', 'primer año',
+    'que tan dificil es', 'es dificil', 'es dificil?', 'salida laboral',
+    'de que trata', 'como es', 'como me inscribo', 'hay becas', 'cuando empieza',
+    'especializacion', 'especializaciones'
+  ];
+
+  if (patrones.some(p => n.includes(p))) return true;
+
+  return (
+    (n.includes('cuanto') || n.includes('como') || n.includes('que') || n.includes('cual')) &&
+    (n.includes('dura') || n.includes('materias') || n.includes('plan') || n.includes('dificil') ||
+      n.includes('salida') || n.includes('ingreso') || n.includes('inscrib'))
+  );
+}
+
 /**
  * Restricción de alcance:
  * este chatbot sólo responde consultas de ingresantes (ingreso, carreras, trámites y fechas).
@@ -488,6 +553,11 @@ function esConsultaParaIngresantes(txt, low) {
   const t = (low || txt || '').toLowerCase().trim();
   const n = normalizar(t);
   const pareceConsultaMaterias = esConsultaMaterias(t);
+  const esSeguimiento = esContinuacionContextual(t);
+  const esSeguimientoAmbiguo = esConsultaContextualAmbigua(t);
+  const esConsultaOfertaGeneral =
+    (n.includes('facultad') || n.includes('fceyt')) &&
+    (n.includes('carrera') || n.includes('carreras') || n.includes('carrea') || n.includes('estudiar') || n.includes('oferta'));
 
   // Detectar intención matemática aunque no haya operadores con símbolos.
   // Ejemplos: "cuanto es 3 mas1", "sumar 2 y 2", "3 más 1".
@@ -513,7 +583,10 @@ function esConsultaParaIngresantes(txt, low) {
   ];
 
   if (KW.some(k => t.includes(k))) return true;
+  if (esConsultaOfertaGeneral) return true;
   if (pareceConsultaMaterias) return true;
+  if (esSeguimiento) return true;
+  if (esSeguimientoAmbiguo) return true;
   if (/\bing\.?\s+[a-záéíóúñ]+/.test(t)) return true;
   if (n.includes('lic en') || n.includes('licenciatura en sistema')) return true;
   if (ctx.carrera && (n.includes('que') || n.includes('cual') || n.includes('como') || n.includes('cuanto'))) return true;
@@ -627,7 +700,6 @@ const REGLAS_BASE = `
 Si hay un link relevante (de la BASE DE CONOCIMIENTO o de estas instrucciones): FUENTE: [URL exacta]
 Si no hay link aplicable, no incluyas la línea FUENTE.
 
-Antes de la sección "SUGERENCIAS:", incluí UNA pregunta corta de seguimiento (1 sola).
 Terminá SIEMPRE con EXACTAMENTE 3 sugerencias — ni más ni menos. Son la continuación natural de la conversación.
 REGLAS DE SUGERENCIAS (críticas):
 - Deben ser preguntas o acciones que el usuario haría lógicamente DESPUÉS de esta respuesta.
@@ -637,6 +709,7 @@ REGLAS DE SUGERENCIAS (críticas):
 - Usá preguntas cortas en voseo: "¿Cuánto dura?", "¿Qué materias tiene?", "¿Cómo me inscribo?"
 - O acciones específicas: "Contame sobre el Programador Universitario", "¿Hay becas disponibles?"
 - Máximo 6 palabras por sugerencia.
+- No pongas ejemplos de preguntas o sugerencias dentro del cuerpo del mensaje. Van solo en "SUGERENCIAS:".
 
 EJEMPLOS de sugerencias BUENAS — preguntas naturales que haría el usuario:
 Después de info sobre una carrera → "¿Qué tan difícil es?", "¿Qué materias tiene primer año?", "¿Hay alguna carrera más corta?"
@@ -664,6 +737,44 @@ const PROMPTS = {
 
 BASE DE CONOCIMIENTO:
 ${conocimiento}
+══ ESTILO (cumplir siempre) ══
+- Sé amigable, cálido y directo. Respondé SOLO lo que se preguntó, sin agregar consejos ni frases de relleno.
+- Respuestas cortas a menos que pregunten algo que puedas explicar con opciones y puntos: máximo 8 líneas. NO divagues.
+-Si  no entiendes al usuario trata de re preguntar 
+- Máximo 2 emojis por respuesta
+- Si el usuario parece perdido: "No te preocupés, vamos paso a paso 😊"
+-Cuando se quiere listar algo siempre poner puntos uno de bajo del otro
+
+══ REGLAS CRÍTICAS — INCUMPLIRLAS ES UN ERROR GRAVE ══
+- PROHIBIDO INVENTAR URLs. Solo podés usar URLs que aparezcan LITERALMENTE en la BASE DE CONOCIMIENTO o en estas instrucciones.
+- Si el usuario pregunta por info o plan de estudios de una carrera, incluí SIEMPRE su URL oficial.
+- Si no tenés la URL de esa carrera, usá https://fce.unse.edu.ar (nunca inventes un ?q=...)
+- Si no tenés un dato exacto: respondé con lo que sí sabés y orientá con calidez. NUNCA digas "No tengo ese dato" — es frío y poco útil.
+- Para preguntas de opinión ("¿es difícil?", "¿vale la pena?"): respondé con empatía, mencioná las tutorías https://fce.unse.edu.ar/?q=tutoriasfceyt y el curso de ingreso.
+- Si realmente no podés responder: "No tengo esa info en este momento, pero podés consultar en https://fce.unse.edu.ar o escribir a apyc-fce@unse.edu.ar 😊"
+- PROHIBIDO responder con consejos de vida, reflexiones o frases no pedidas por el usuario.
+
+══ FORMATO OBLIGATORIO AL FINAL DE CADA RESPUESTA ══
+Si hay un link relevante (de la BASE DE CONOCIMIENTO o de estas instrucciones): FUENTE: [URL exacta]
+Si no hay link aplicable, no incluyas la línea FUENTE.
+
+Terminá SIEMPRE con EXACTAMENTE 3 sugerencias — ni más ni menos. Son la continuación natural de la conversación.
+REGLAS DE SUGERENCIAS (críticas):
+- Deben ser preguntas o acciones que el usuario haría lógicamente DESPUÉS de esta respuesta.
+- Tienen que estar relacionadas 100% con el tema que se habló. Si hablaste de Sistemas, las sugerencias son sobre Sistemas.
+- PROHIBIDO sugerir "Ver la página oficial", "Consultá el plan", "Buscá más info" — son inútiles.
+- PROHIBIDO sugerir cosas ya respondidas en este mismo mensaje.
+- Usá preguntas cortas en voseo: "¿Cuánto dura?", "¿Qué materias tiene?", "¿Cómo me inscribo?"
+- O acciones específicas: "Contame sobre el Programador Universitario", "¿Hay becas disponibles?"
+- Máximo 6 palabras por sugerencia.
+- No pongas ejemplos de preguntas o sugerencias dentro del cuerpo del mensaje. Van solo en "SUGERENCIAS:".
+
+EJEMPLOS de sugerencias BUENAS — preguntas naturales que haría el usuario:
+Después de info sobre una carrera → "¿Qué tan difícil es?", "¿Qué materias tiene primer año?", "¿Hay alguna carrera más corta?"
+Después de hablar de dificultad → "¿Cómo funcionan las tutorías?", "¿Cuándo es el ciclo de ingreso?", "¿Hay becas disponibles?"
+Después de inscripción → "¿Qué documentos necesito?", "¿Dónde queda la facultad?", "¿Cuándo empiezan las clases?"
+Después de becas → "¿Cómo me anoto a una beca?", "¿Hay comedor universitario?", "¿Cuándo cierran las inscripciones?"
+Después de horarios → "¿Cuándo son los exámenes?", "¿Cuándo me inscribo a materias?", "¿Cuándo es el receso?"
 
 CARRERAS COMPLETAS (usá ESTAS URLs, PROHIBIDO inventar otras):
 Ingenierías 5a: Civil→?q=ingenieria-civil | Hidráulica→?q=ingenieria-hidraulica | Vial→?q=ingenieria-vial | Industrial→?q=ingenieria-industrial | Agrimensura→?q=ingenieria-en-agrimensura | Eléctrica→?q=ingenieria-electrica | Electromecánica→?q=ingenieria-electromecanica | Electrónica→?q=ingenieria-electronica
@@ -672,12 +783,32 @@ Profesorados 4a: Informática→?q=profesorado-en-informatica | Matemática→?q
 Pregrado 2-3a: Programador→?q=programador-universitario-en-informatica | Analista→?q=Analista-en-Sistemas-de-Informacion | Asist.Eléctrico→?q=Asistente-Universitario-en-Sistemas-Electricos | Tec.Vial→?q=tecnicatura-universitaria-vial | Tec.Construcciones→?q=tecnicatura-universitaria-en-construccion | Tec.Topografía→?q=Tecnicatura-Universitaria-en-Topografia | Tec.Hidrología→?q=tecnicatura-universitaria-en-hidrologia-subterranea | Tec.Producción→?q=tecnicatura-universitaria-en-organizacion-y-control-de-la-produccion
 (Todos los links son https://fce.unse.edu.ar/ + el ?q=... indicado)
 LISTA COMPLETA. Carrera no listada = NO existe en la FCEyT.
+CANTIDADES EXACTAS:
+- Ingenierías: 8
+- Licenciaturas: 3
+- Profesorados: 3
+- Tecnicaturas/Pregrado: 8
+- Total de carreras: 22
 
 REGLAS:
 - FCEyT es PÚBLICA y GRATUITA. No hay costos.
-- No existe Ing. en Informática/Sistemas/Computación → ofrecé Lic. en Sistemas, Programador, Analista.
-- Si pregunta por carrera inexistente: aclaralo y ofrecé la más cercana de la lista.
-- Si pregunta "primer año" o "plan de estudios": dá la URL de esa carrera directamente.
+- Si el usuario pregunta "qué carreras hay", "qué se puede estudiar" o algo similar, NO des una lista corta de ejemplos. Respondé agrupando la oferta en 4 bloques: **Ingenierías**, **Licenciaturas**, **Profesorados** y **Tecnicaturas/Pregrado**, nombrando las opciones  con puntos en  cada bloque.
+- Para "qué carreras hay" usá SIEMPRE este formato visual breve:
+  **Ingenierías:** [lista corta]
+  **Licenciaturas:** [lista corta]
+  **Profesorados:** [lista corta]
+  **Tecnicaturas/Pregrado:** [lista corta]
+  Cerrá con una pregunta de orientación como "¿Cuál área te interesa más?"
+- Si el usuario pregunta "cuántas carreras hay" o "cuántas hay en total", respondé con el total exacto **22** y enseguida resumí cómo se distribuyen: **8 ingenierías**, **3 licenciaturas**, **3 profesorados** y **8 tecnicaturas/pregrado**. Después invitá a elegir un área.
+- Si el usuario pregunta "cuántas carreras hay" o "cuántas hay en total", NO respondas solo con el número. El mensaje debe incluir el total exacto **22** y además el desglose por áreas: **8 ingenierías**, **3 licenciaturas**, **3 profesorados** y **8 tecnicaturas/pregrado**
+- Para "qué carreras hay", evitá frases vagas como "tenemos varias carreras" o "algunas opciones son". Sé concreto y ordenado.
+- Si preguntan "cuántas ingenierías hay" o "cuántas carreras hay de [tipo]", respondé con el número exacto y después listá los nombres de ese grupo.
+- Nunca mezcles conteo y lista de forma inconsistente. Si decís un número, debe coincidir exactamente con los nombres que enumerás.
+- No existe Ing. en Informática/Sistemas/Computación → aclaralo y ofrecé SIEMPRE estas 4 alternativas: **Licenciatura en Sistemas de Información**, **Programador Universitario en Informática**, **Analista Universitario en Sistemas de Información** y **Profesorado en Informática**.
+- Si pregunta por una carrera inexistente, no te quedes solo en decir que no existe: ofrecé 2 a 4 carreras relacionadas de la lista oficial, explicando brevemente por qué se parecen.
+- Si pregunta "primer año" o "plan de estudios": explica un poco sobre la pregunta y dá la URL de esa carrera directamente.
+- Si pregunta por materias de primer año, nombrá las materias exactas que figuran en la base de conocimiento. No inventes ejemplos genéricos como "Matemática, Programación y Sistemas Operativos".
+- Si el usuario pregunta por materias sin decir de qué carrera habla y no hay contexto claro, pedí primero la carrera.
 - Contexto: si ya hablaron de una carrera, las preguntas de seguimiento se refieren a ESA carrera.
 - Respuestas cortas, máx 6 líneas. Usá **negritas** para nombres de carrera.
 
@@ -988,6 +1119,82 @@ function esConsultaComparacion(texto) {
     n.includes('comparar') || n.includes('comparacion entre') || n.includes('que diferencia hay entre');
 }
 
+function esConsultaTitulo(texto) {
+  const n = normalizar(texto || '');
+  return n.includes('que titulo otorga') ||
+    n.includes('que tipo de titulo') ||
+    n.includes('titulo otorga') ||
+    n.includes('titulo da') ||
+    n.includes('que titulo te da') ||
+    n.includes('titulo recibis') ||
+    n.includes('titulo recibo') ||
+    n.includes('es de grado o pregrado') ||
+    n.includes('es de grado') ||
+    n.includes('es pregrado');
+}
+
+function construirRespuestaTitulo(carrera) {
+  const ficha = FICHAS_CARRERA.find(f => normalizar(f.nombre) === normalizar(carrera || ''));
+  if (!ficha) return null;
+
+  const esPregrado = ficha.tipo === 'Pregrado';
+  const nombreNorm = normalizar(ficha.nombre);
+  let detalle = esPregrado
+    ? 'Es una carrera de **pregrado**.'
+    : 'Es una carrera de **grado**.';
+
+  if (nombreNorm.includes('ingenieria')) {
+    detalle += '\n\nAl finalizar obtenes un titulo universitario de grado en el area de la ingenieria.';
+  } else if (nombreNorm.includes('licenciatura')) {
+    detalle += '\n\nAl finalizar obtenes un titulo universitario de grado correspondiente a una licenciatura.';
+  } else if (nombreNorm.includes('profesorado')) {
+    detalle += '\n\nAl finalizar obtenes un titulo universitario de grado con orientacion docente.';
+  } else {
+    detalle += '\n\nAl finalizar obtenes un titulo universitario de pregrado.';
+  }
+
+  return {
+    texto: detalle + '\n\nCarrera en contexto: **' + ficha.nombre + '**.',
+    fuente: ficha.url
+  };
+}
+
+function sugerenciasFallbackPorTema(tema) {
+  if (tema === 'horarios') return ['¿Cuándo empieza el ingreso?', '¿Cuándo son los exámenes?', '¿Dónde veo el calendario?'];
+  if (tema === 'tramites') return ['¿Cómo me inscribo?', '¿Qué documentación necesito?', '¿Dónde queda Alumnado?'];
+  if (tema === 'carreras') return ['¿Cuánto dura?', '¿Qué materias tiene primer año?', '¿Qué salida laboral tiene?'];
+  return ['¿Qué carreras hay?', '¿Cómo es el ingreso?', '¿Qué trámites puedo hacer?'];
+}
+
+async function construirRespuestaFallbackPorSaturacion(txt, tema) {
+  const carreraActual = detectarCarreraEnTexto(txt) || ctx.carrera || recuperarCarreraDesdeHistorial();
+
+  if (esConsultaTitulo(txt) && carreraActual) {
+    const respuestaTitulo = construirRespuestaTitulo(carreraActual);
+    if (respuestaTitulo) {
+      return {
+        texto: 'La IA esta saturada por unos momentos, pero igual te puedo responder con lo que ya tengo cargado.\n\n' + respuestaTitulo.texto,
+        fuente: respuestaTitulo.fuente,
+        sug: sugerenciasFallbackPorTema('carreras')
+      };
+    }
+  }
+
+  const query = [carreraActual || '', txt].filter(Boolean).join(' ');
+  const resultados = await buscarResultadosRAG(query, tema || detectarTema(txt) || 'general');
+  if (!resultados.length) return null;
+
+  const mejor = resultados[0];
+  const resumen = resumirDocumentoParaChat(mejor, 14);
+  if (!resumen) return null;
+
+  return {
+    texto: 'La IA esta saturada por unos momentos, pero encontre esto en la base de conocimiento:\n\n' + resumen,
+    fuente: mejor.fuente_url || resolverUrlCarrera(txt) || 'https://fce.unse.edu.ar/',
+    sug: sugerenciasFallbackPorTema(tema || detectarTema(txt) || 'general')
+  };
+}
+
 function detectarCarrerasEnTexto(texto) {
   const low = (texto || '').toLowerCase();
   const n = normalizar(texto || '');
@@ -1115,6 +1322,8 @@ function mostrarListaPregrado(txt) {
 function mostrarFichaCarrera(txt, ficha) {
   userMsg(txt);
   ctx.carrera = ficha.nombre.toLowerCase();
+  ctx.tema = 'carreras';
+  ctx.ultimoFoco = 'plan de estudios';
   const tipoLabel = ficha.tipo === 'Pregrado'
     ? '📜 Título universitario oficial'
     : '📜 Carrera de Grado';
@@ -1257,11 +1466,21 @@ async function send(over) {
 
   if (!txt || busy) return;
 
+  if (followUpTimer) {
+    clearTimeout(followUpTimer);
+    followUpTimer = null;
+  }
+
   input.value = '';
   ar(input);
   document.getElementById('qrs').innerHTML = '';
   hideErr();
   ctx.turnos++;
+  const temaDetectado = detectarTema(txt);
+  const esSeguimiento = esContinuacionContextual(txt);
+  const esSeguimientoAmbiguo = esConsultaContextualAmbigua(txt);
+  const temaEfectivo = (esSeguimiento || esSeguimientoAmbiguo) && ctx.tema ? ctx.tema : temaDetectado;
+  const forzarRAG = temaEfectivo !== 'general' || esSeguimiento || esSeguimientoAmbiguo || esConsultaMaterias(txt) || esConsultaComparacion(txt) || !!detectarCarreraInexistente(txt);
 
   // Manejo de comandos especiales
   // Normalizar: minúsculas y sin signos de puntuación al inicio/fin para mejor detección
@@ -1283,14 +1502,15 @@ async function send(over) {
   }
 
   // Fix: ignorar mensajes que son sugerencias reflexivas generadas por el propio bot
-  if (IGNORE_MSGS.some(p => low.includes(p))) {
+  if (IGNORE_MSGS.some(p => low === p)) {
+    ctx.ultimoFoco = null;
     userMsg(txt);
     botMsg('Entendido 😊 ¿Hay algo más en lo que te pueda ayudar?', null, false,
       ['🎓 Ver carreras', '📅 Calendario académico', '📋 Trámites e inscripción']);
     return;
   }
 
-  if ((low.includes('carreras') || low.includes('opciones') || low.includes('quiero saber')) &&
+  if (false && !forzarRAG && (low.includes('carreras') || low.includes('opciones') || low.includes('quiero saber')) &&
       (low.includes('informática') || low.includes('informatica') || low.includes('sistemas')) &&
       !low.includes('ingeniería en informática') && !low.includes('ingenieria en informatica')) {
     userMsg(txt);
@@ -1310,13 +1530,13 @@ async function send(over) {
 
   // Fix: detectar carreras que no existen y corregir sin inventar
   const carreraInexistente = detectarCarreraInexistente(txt);
-  if (carreraInexistente) {
+  if (false && carreraInexistente && !forzarRAG) {
     userMsg(txt);
     botMsg(carreraInexistente.respuesta, carreraInexistente.fuente, true, carreraInexistente.sug);
     return;
   }
 
-  if (esConsultaComparacion(txt)) {
+  if (false && !forzarRAG && esConsultaComparacion(txt)) {
     const carrerasDetectadas = detectarCarrerasEnTexto(txt);
     const fichaContexto = ctx.carrera
       ? FICHAS_CARRERA.find(f => f.nombre.toLowerCase() === ctx.carrera.toLowerCase())
@@ -1350,7 +1570,8 @@ async function send(over) {
     return;
   }
 
-  if (MENUK.some(w => low.includes(w)) || low.includes('volver') || low.includes('inicio')) {
+  if (low === 'menú' || low === 'menu' || low === 'inicio' || low === 'empezar' ||
+      low === 'volver al menú' || low === 'volver al menu') {
     userMsg(txt);
     resetChat();
     return;
@@ -1359,7 +1580,9 @@ async function send(over) {
   // ── FLUJO CALENDARIO ACADÉMICO ──────────────────────────
 
   // 1. El usuario pide info general del calendario
-  if (CALENDARIOK.some(k => low.includes(k)) || low === 'calendario' || low === '📅 calendario académico') {
+  if (false && !forzarRAG && (CALENDARIOK.some(k => low.includes(k)) || low === 'calendario' || low === '📅 calendario académico')) {
+    ctx.tema = 'horarios';
+    ctx.ultimoFoco = 'fechas del calendario académico';
     userMsg(txt);
     botMsg(
       'El Calendario Académico 2026 de la FCEyT fue aprobado por Resolución HCD Nº 005/2026 (4 de marzo de 2026).\n\n' +
@@ -1376,8 +1599,10 @@ async function send(over) {
   }
 
   // 2. El usuario quiere ver la imagen
-  if (low === '📅 ver imagen del calendario' || low.includes('ver imagen del calendario') ||
-      low.includes('mostrar imagen') || low === 'imagen del calendario') {
+  if (low === '📅 ver imagen del calendario' || low === 'ver imagen del calendario' ||
+      low === 'mostrar imagen del calendario' || low === 'imagen del calendario') {
+    ctx.tema = 'horarios';
+    ctx.ultimoFoco = 'imagen del calendario académico';
     userMsg(txt);
     mostrarCalendario();
     setQRlist(['¿Cuándo son los exámenes de febrero?', '¿Cuándo empiezan las clases?', '🔍 Consultar una fecha específica']);
@@ -1385,8 +1610,10 @@ async function send(over) {
   }
 
   // 3. El usuario quiere ver el PDF/resolución
-  if (low === '📄 ver resolución oficial' || low.includes('ver resolución') ||
-      low.includes('ver resolucion') || low.includes('pdf') || low.includes('resolución completa')) {
+  if (low === '📄 ver resolución oficial' || low === 'ver resolución oficial' ||
+      low === 'ver resolucion oficial' || low === 'resolución oficial' || low === 'resolucion oficial') {
+    ctx.tema = 'horarios';
+    ctx.ultimoFoco = 'resolución del calendario académico';
     userMsg(txt);
     botMsg(
       'Podés descargar la Resolución HCD Nº 005/2026 con el calendario completo desde el sitio oficial.',
@@ -1397,9 +1624,63 @@ async function send(over) {
     return;
   }
 
+  if (esConsultaMaterias(txt) && !detectarCarreraEnTexto(txt) && !esSeguimiento && !esSeguimientoAmbiguo) {
+    userMsg(txt);
+    botMsg(
+      'Para decirte bien las materias, necesito saber de qué carrera hablás 😊',
+      null,
+      false,
+      ['Ingeniería Civil', 'Licenciatura en Sistemas', 'Programador Universitario']
+    );
+    return;
+  }
+
+  if (esConsultaMaterias(txt) && (detectarCarreraEnTexto(txt) || ctx.carrera || recuperarCarreraDesdeHistorial())) {
+    const carreraMaterias = detectarCarreraEnTexto(txt) || ctx.carrera || recuperarCarreraDesdeHistorial();
+    const queryMaterias = [carreraMaterias, 'materias primer año'].filter(Boolean).join(' ');
+    const respuestaMaterias = await buscarPlanEstudiosDirecto(carreraMaterias) || await resolverMateriasDesdeSemilla(queryMaterias);
+    if (respuestaMaterias) {
+      if (carreraMaterias) {
+        ctx.carrera = carreraMaterias;
+        ctx.tema = 'carreras';
+        ctx.ultimoFoco = 'materias de primer año';
+      }
+      userMsg(txt);
+      hist.push({ role: 'user', content: txt });
+      botMsg(
+        respuestaMaterias.texto,
+        respuestaMaterias.fuente,
+        true,
+        ['¿Cuánto dura?', '¿Qué tipo de título otorga?', '¿Qué salida laboral tiene?']
+      );
+      hist.push({ role: 'assistant', content: respuestaMaterias.texto });
+      return;
+    }
+  }
+
+  if (esConsultaTitulo(txt) && (detectarCarreraEnTexto(txt) || ctx.carrera || recuperarCarreraDesdeHistorial())) {
+    const carreraTitulo = detectarCarreraEnTexto(txt) || ctx.carrera || recuperarCarreraDesdeHistorial();
+    const respuestaTitulo = construirRespuestaTitulo(carreraTitulo);
+    if (respuestaTitulo) {
+      ctx.carrera = carreraTitulo;
+      ctx.tema = 'carreras';
+      ctx.ultimoFoco = 'tipo de titulo';
+      userMsg(txt);
+      hist.push({ role: 'user', content: txt });
+      botMsg(
+        respuestaTitulo.texto,
+        respuestaTitulo.fuente,
+        true,
+        ['¿Cuánto dura?', '¿Qué materias tiene primer año?', '¿Qué salida laboral tiene?']
+      );
+      hist.push({ role: 'assistant', content: respuestaTitulo.texto });
+      return;
+    }
+  }
+
   // 4. El usuario quiere consultar una fecha específica
-  if (low === '🔍 consultar una fecha específica' || low.includes('fecha específica') ||
-      low.includes('fecha especifica')) {
+  if (false && !forzarRAG && (low === '🔍 consultar una fecha específica' || low.includes('fecha específica') ||
+      low.includes('fecha especifica'))) {
     userMsg(txt);
     botMsg(
       '¿Sobre qué fecha o evento querés consultar?\n\nPor ejemplo podés preguntarme:',
@@ -1412,13 +1693,13 @@ async function send(over) {
   // ── FLUJOS HARDCODED: lista grado, pregrado, ficha individual — VA PRIMERO ──────
   // Si venimos del flujo "quiero ver materias", no dejemos que la ficha de carrera
   // secuestre la respuesta: primero debe correr el flujo de materias.
-  if (!ctx.queriaMateria) {
+  if (false && !ctx.queriaMateria && !forzarRAG) {
     const hardcodedResult = handleCarreraHardcoded(low, txt);
     if (hardcodedResult) return;
   }
 
   // ── FLUJO: MATERIAS DE PRIMER AÑO (va ANTES que fichas para respetar el contexto) ──
-  if (ctx.queriaMateria || esConsultaMaterias(txt)) {
+  if (false && !forzarRAG && (ctx.queriaMateria || esConsultaMaterias(txt))) {
     ctx.queriaMateria = false;
     const carreraActual = obtenerCarreraActual(txt);
     if (carreraActual) ctx.carrera = carreraActual;
@@ -1548,9 +1829,9 @@ async function send(over) {
   }
 
   // ── FLUJO: "¿QUÉ TAN DIFÍCIL ES?" ──────────────────────
-  if (low.includes('difícil') || low.includes('dificil') || low.includes('dificultad') ||
+  if (false && !forzarRAG && (low.includes('difícil') || low.includes('dificil') || low.includes('dificultad') ||
       low.includes('exigente') || low.includes('compleja') || low.includes('cuesta') ||
-      low.includes('se puede') || low.includes('es complicad')) {
+      low.includes('se puede') || low.includes('es complicad'))) {
     const carreraCtx = ctx.carrera || '';
     // Personalizar según tipo de carrera
     let exigenciaTxt = '· **Matemática** desde el primer día — es el núcleo de casi todas las carreras\n' +
@@ -1576,8 +1857,8 @@ async function send(over) {
   }
 
   // ── FLUJO: TUTORÍAS DE PARES ──────────────────────────
-  if (low.includes('tutoría') || low.includes('tutoria') || low.includes('tutor') ||
-      low.includes('tutorías de pares') || low.includes('apoyo') && low.includes('académ')) {
+  if (false && !forzarRAG && (low.includes('tutoría') || low.includes('tutoria') || low.includes('tutor') ||
+      low.includes('tutorías de pares') || low.includes('apoyo') && low.includes('académ'))) {
     userMsg(txt);
     botMsg(
       '👥 **Tutorías de Pares** — son estudiantes avanzados de tu misma carrera que te ayudan **gratis** 🙌\n\n' +
@@ -1596,10 +1877,10 @@ async function send(over) {
     low.includes('sistemas') || low.includes('programador') || low.includes('analista');
 
     // ── FLUJO: DURACIÓN / CUÁL DURA MENOS ────────────────
-  if ((low.includes('dura') && (low.includes('menos') || low.includes('corta') || low.includes('poco'))) ||
+  if (false && !forzarRAG && ((low.includes('dura') && (low.includes('menos') || low.includes('corta') || low.includes('poco'))) ||
       low.includes('más corta') || low.includes('mas corta') ||
       (low.includes('cuánto') && low.includes('dura')) ||
-      (low.includes('cuanto') && low.includes('dura'))) {
+      (low.includes('cuanto') && low.includes('dura')))) {
     if (consultaInformatica) {
       userMsg(txt);
       botMsg(
@@ -1666,8 +1947,10 @@ async function send(over) {
   hist.push({ role: 'user', content: txt });
 
   // Detectar tema para elegir el prompt correcto - Criterio 5: Robustez
-  const temaDetectado = detectarTema(txt);
-  ctx.tema = temaDetectado;
+  ctx.tema = temaEfectivo;
+  if (!esSeguimiento) {
+    ctx.ultimoFoco = null;
+  }
   ctx.carrera = obtenerCarreraActual(txt) || ctx.carrera;
 
   // Guardar en BD
@@ -1716,8 +1999,8 @@ async function send(over) {
     }
 
     // Criterio 13: Aprendizaje - sugerir ayuda después de cierto tiempo
-    if (ctx.turnos === 5 ) {
-      setTimeout(() => {
+    if (ctx.turnos >= 5) {
+      followUpTimer = setTimeout(() => {
         if (!busy) {
           botMsg('¿Cómo vas? ¿Encontraste lo que buscabas? 😊', null, false, []);
           setQRlist(['✅ Sí, gracias', '📋 Ver menú completo', '📞 Contacto']);
@@ -1727,8 +2010,22 @@ async function send(over) {
   } catch (e) {
     hideTyping();
     console.error('Error:', e);
-    showError('Error de conexión. Intentá de nuevo en unos segundos.');
-    setQRlist(['🔄 Reintentar', '📞 Contacto ']);
+    if (e.status === 429) {
+      const fallback = await construirRespuestaFallbackPorSaturacion(txt, ctx.tema || temaEfectivo);
+      if (fallback) {
+        botMsg(fallback.texto, fallback.fuente, true, fallback.sug || []);
+        hist.push({ role: 'assistant', content: fallback.texto });
+      } else {
+        showError('El servicio de IA esta saturado por unos momentos. Espera unos segundos y volve a intentar.');
+        setQRlist(['🔄 Reintentar', '📞 Contacto']);
+      }
+    } else if (e.status === 401) {
+      showError('La configuracion de la clave de IA en el backend no es valida.');
+      setQRlist(['📞 Contacto', '📋 Ver menú completo']);
+    } else {
+      showError('Error de conexión. Intentá de nuevo en unos segundos.');
+      setQRlist(['🔄 Reintentar', '📞 Contacto ']);
+    }
   } finally {
     setBusy(false);
   }
@@ -1739,14 +2036,13 @@ async function send(over) {
 // ═══════════════════════════════════════════════════════
 
 async function callGroqAPI() {
-  if (!GROQ_KEY || GROQ_KEY.length < 10) {
-    throw new Error('API key no configurada');
-  }
-
   // Buscar contexto RAG específico para este tema y query
   const ultimaQuery = hist.length > 0 ? hist[hist.length - 1].content : '';
+  const esSeguimiento = esContinuacionContextual(ultimaQuery);
+  const focoSeguimiento = esSeguimiento ? obtenerFocoSeguimiento() : '';
   // Usar la carrera recordada para sostener contexto cuando el usuario no la repite
-  const ragQuery = ctx.carrera ? (ctx.carrera + ' ' + ultimaQuery) : ultimaQuery;
+  const ragBase = [ctx.carrera || '', focoSeguimiento, ultimaQuery].filter(Boolean).join(' ');
+  const ragQuery = ragBase || ultimaQuery;
   const contextoRAG = await buscarContextoPorTema(ragQuery, ctx.tema || 'general');
 
   // Guardar contexto RAG para que el prompt lo use
@@ -1780,34 +2076,35 @@ async function callGroqAPI() {
   const messages = [
     { role: 'system', content: systemMsg },
     ...(ctx.carrera ? [{ role: 'system', content: `Carrera en contexto actual: ${ctx.carrera}. Si la última pregunta es ambigua, respondela sobre esa carrera.` }] : []),
+    ...(esSeguimiento ? [{ role: 'system', content: `La última entrada del usuario es una continuación breve. Interpretala como seguimiento de: ${focoSeguimiento || 'la última pregunta del asistente'}.` }] : []),
     ...histReciente
   ];
 
-  const r = await fetch(GROQ_URL, {
+  const r = await fetch(`${API_URL}/chat`, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${GROQ_KEY.trim()}`
+      'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      model: 'llama-3.3-70b-versatile',
-      messages,
-      temperature: 0.3,
-      max_tokens: 600
+      sistema: systemMsg,
+      mensajes: messages.slice(1)
     })
   });
 
   if (!r.ok) {
     const errData = await r.json().catch(() => ({}));
-    throw new Error(errData?.error?.message || 'Fallo en Groq');
+    const mensaje = errData?.error || errData?.message || 'Fallo en el backend de chat';
+    const error = new Error(mensaje);
+    error.status = r.status;
+    throw error;
   }
 
   const d = await r.json();
-  if (!d.choices || !d.choices[0].message) {
+  if (!d.respuesta) {
     throw new Error('Sin respuesta de IA');
   }
 
-  return d.choices[0].message.content;
+  return d.respuesta;
 }
 
 // ═══════════════════════════════════════════════════════
@@ -1835,6 +2132,16 @@ function parse(raw) {
       .map(s => s.replace(/\*\*(.+?)\*\*/g, '$1').replace(/\*(.+?)\*/g, '$1'))
       .filter(s => s && s.length > 3 && !SUGS_BLOQUEADAS.some(b => s.toLowerCase().includes(b)))
       .slice(0, 3);
+  }
+
+  function extraerPreguntaFinalComoSugerencia(texto) {
+    const partes = texto.split('\n').map(s => s.trim()).filter(Boolean);
+    if (partes.length === 0) return { texto, sugerencia: null };
+    const ultima = partes[partes.length - 1];
+    const esPregunta = ultima.startsWith('¿') && ultima.endsWith('?') && ultima.length <= 90;
+    if (!esPregunta) return { texto, sugerencia: null };
+    const cuerpo = partes.slice(0, -1).join('\n').trim();
+    return { texto: cuerpo || texto, sugerencia: ultima };
   }
 
   // Extraer fuente
@@ -1887,6 +2194,14 @@ function parse(raw) {
         sug = candidatos;
         msg = contentLines.join('\n').trim();
       }
+    }
+  }
+
+  if (sug.length < 3) {
+    const extraido = extraerPreguntaFinalComoSugerencia(msg);
+    if (extraido.sugerencia && !sug.includes(extraido.sugerencia)) {
+      msg = extraido.texto;
+      sug = [extraido.sugerencia, ...sug].slice(0, 3);
     }
   }
 
@@ -1982,6 +2297,10 @@ function startWithTopic(topic) {
     }
 }
 function resetChat() {
+  if (followUpTimer) {
+    clearTimeout(followUpTimer);
+    followUpTimer = null;
+  }
   hist = [];
   ctx = {
     nombre: null,
@@ -1991,7 +2310,8 @@ function resetChat() {
     turnos: 0,
     modoOscuro: ctx.modoOscuro,
     idioma: ctx.idioma,
-    topic: null
+    topic: null,
+    ultimoFoco: null
   };
   conversacionId = null;
   document.getElementById('msgs').innerHTML = '';

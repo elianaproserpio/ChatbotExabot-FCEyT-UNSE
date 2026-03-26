@@ -5,6 +5,7 @@ const path = require('path');
 const fs = require('fs');
 const sqlite3 = require('sqlite3').verbose();
 const axios = require('axios');
+require('dotenv').config();
 const { buscarContextoRAG, iniciarSchedulerRAG, obtenerEstadisticasRAG, iniciarScrapingGlobal } = require('./rag-manager');
 const { sincronizarHorarios } = require('./scripts/sync_horarios');
 
@@ -431,8 +432,23 @@ app.post('/api/chat', async (req, res) => {
     const contenido = response.data.choices[0].message.content;
     res.json({ respuesta: contenido });
   } catch (error) {
-    console.error('Error Groq:', error.response?.data || error.message);
-    res.status(500).json({ error: error.message });
+    const status = error.response?.status || 500;
+    const data = error.response?.data || {};
+    console.error('Error Groq:', data || error.message);
+
+    if (status === 429) {
+      return res.status(429).json({
+        error: 'El servicio de IA esta recibiendo demasiadas solicitudes en este momento. Espera unos segundos y proba de nuevo.'
+      });
+    }
+
+    if (status === 401) {
+      return res.status(401).json({
+        error: 'La clave del servicio de IA no es valida o ya no esta disponible.'
+      });
+    }
+
+    res.status(status).json({ error: data?.error?.message || error.message });
   }
 });
 
