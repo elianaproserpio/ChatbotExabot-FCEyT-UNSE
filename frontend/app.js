@@ -4,7 +4,7 @@
    ═══════════════════════════════════════════════════════ */
 
 const API_URL = 'http://localhost:5000/api';
-const GROQ_KEY = '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'; // Se espera que el backend maneje la clave de forma segura, el frontend no debería tenerla hardcodeada
+const GROQ_KEY = ''; // Se espera que el backend maneje la clave de forma segura, el frontend no debería tenerla hardcodeada
 const GROQ_URL = 'https://api.groq.com/openai/v1/chat/completions?v=2';
 
 // ═══════════════════════════════════════════════════════
