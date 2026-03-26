@@ -4,7 +4,7 @@
 
 ### 1. **Inicia el Backend**
 ```powershell
-cd exabot-sistema\backend
+cd exabot\backend
 npm install
 npm start
 ```
@@ -46,6 +46,7 @@ o con node.js
 | **docs/** | Documentación completa |
 
 ---
+
 
 ## 🔑 Archivo más importante: `.env`
 

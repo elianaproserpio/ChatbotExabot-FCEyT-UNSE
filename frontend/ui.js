@@ -196,6 +196,13 @@ function botMsg(txt, src, fb, sug) {
   const fbHtml = fb ? '<div class="fbrow"><span class="fblbl">Util?</span><button class="fbbtn" onclick="doFb(' + id + ',\'si\',this)">+1</button><button class="fbbtn" onclick="doFb(' + id + ',\'no\',this)">-1</button></div>' : '';
   r.innerHTML = '<div class="bav"></div><div style="flex:1"><div class="bub bot">' + fmt(txt) + srcHtml + '</div><div class="mtime">' + ts() + '</div>' + fbHtml + '</div>';
   m.appendChild(r);
+
+  // Cuando un flujo hardcodeado ya manda sugerencias en botMsg,
+  // las pintamos aca para que no se pierdan al limpiar qrs.
+  if (q && Array.isArray(sug) && sug.length > 0) {
+    setQRlist(sug);
+  }
+
   sc();
 }
 function dsep(lbl) {
